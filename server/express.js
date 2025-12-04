@@ -1,4 +1,3 @@
-// const http = require("http");
 const express = require("express");
 
 const app = express();
@@ -12,7 +11,3 @@ app.get("/about", (req, res) => {
 });
 
 app.listen(8080, () => console.log("Started Successfully"));
-
-// const myServer = http.createServer(app);
-
-// myServer.listen(8080, () => console.log("Started Successfully"));
