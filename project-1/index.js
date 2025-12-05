@@ -17,6 +17,8 @@ app.get("/users", (req, res) => {
 });
 
 app.get("/api/users", (req, res) => {
+  res.setHeader("myName", "Uday Kalse");
+  // console.log(req.headers);
   return res.json(users);
 });
 
@@ -24,7 +26,9 @@ app
   .route("/api/users/:id")
   .get((req, res) => {
     const id = Number(req.params.id);
+
     const user = users.find((user) => user.id === id);
+    if (!user) return res.status(404).json({ error: "User Not Found" });
     return res.json(user);
   })
   .patch((req, res) => {
@@ -48,17 +52,19 @@ app
 
 app.post("/api/users", (req, res) => {
   const body = req.body;
-  // console.log("Body:- ", body);
-  // users.push({
-  //   first_name: body.first_name,
-  //   last_name: users.last_name,
-  //   email: body.email,
-  //   gender: body.gender,
-  //   job_title: body.job_title,
-  // });
+  if (
+    !body ||
+    !body.first_name ||
+    !body.last_name ||
+    !body.email ||
+    !body.gender ||
+    !body.job_title
+  ) {
+    return res.status(400).json({ msg: "ALl fields Are req....." });
+  }
   users.push({ ...body, id: users.length + 1 });
   fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
-    res.json({ status: "Success", id: users.length });
+    res.status(201).json({ status: "Success", id: users.length });
   });
 });
 

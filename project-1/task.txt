@@ -4,5 +4,8 @@ http://localhost:8080/api/users/:id
 http://localhost:8080/api/users  :-Put
 
 first_name
+last_name
+email
 job_title
+gender
 {"id":9,"first_name":"Anna-diana","last_name":"Flack","email":"aflack8@pagesperso-orange.fr","gender":"Female","job_title":"Recruiter"}
