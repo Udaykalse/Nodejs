@@ -1,0 +1,38 @@
+# Node modules
+node_modules/
+task.txt
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build outputs
+dist/
+build/
+.out/
+.next/
+
+# Cache
+.cache/
+.temp/
+tmp/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/
