@@ -8,11 +8,7 @@ require("dotenv").config();
 const app = express();
 const PORT = 8001;
 
-// connectToURLDB(
-//   "mongodb+srv://gojocode95_db_user:oLmLNTjgaTASjF9T@nodecluster.rmytyl2.mongodb.net/"
-// )
-//   .then(() => console.log("🔥 MongoDB Connected Successfully!"))
-//   .catch((err) => console.log("❌ DB Connection Failed:", err));
+
 
 connectToURLDB(process.env.MONGODB_URL)
   .then(() => console.log("🔥 MongoDB Connected Successfully!"))
@@ -35,7 +31,6 @@ app.use("/url", urlRoutes);
 app.use("/", staticRouter);
 
 app.get("/url/:shortId", async (req, res) => {
-  // app.get("/:shortId", async (req, res) => {
 
   const shortId = req.params.shortId;
   const entry = await URL.findOneAndUpdate(
