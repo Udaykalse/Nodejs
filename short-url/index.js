@@ -1,14 +1,13 @@
 const express = require("express");
-const urlRoutes = require("./routes/url.js");
 const { connectToURLDB } = require("./connection.js");
 const URL = require("./model/url.js");
 const staticRouter = require("./routes/staticRoute");
+const urlRoutes = require("./routes/url.js");
+const userRouter = require("./routes/users");
 const path = require("path");
 require("dotenv").config();
 const app = express();
 const PORT = 8001;
-
-
 
 connectToURLDB(process.env.MONGODB_URL)
   .then(() => console.log("🔥 MongoDB Connected Successfully!"))
@@ -29,9 +28,11 @@ app.get("/test", async (req, res) => {
 
 app.use("/url", urlRoutes);
 app.use("/", staticRouter);
+app.use("/user", userRouter);
+
+
 
 app.get("/url/:shortId", async (req, res) => {
-
   const shortId = req.params.shortId;
   const entry = await URL.findOneAndUpdate(
     {
